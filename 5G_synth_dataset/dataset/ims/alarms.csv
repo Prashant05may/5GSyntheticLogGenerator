@@ -1,0 +1,11 @@
+alarm_id,fault_type,node,severity,probable_cause,specific_problem,event_time,action
+68379c7c1431,KAMAILIO_RESTART,pcscf,MINOR,Software Error (process supervision restart),"P-CSCF restarted, active dialogs and registrations lost",2026-07-06T22:00:00,RAISE
+68379c7c1431,KAMAILIO_RESTART,pcscf,CLEARED,Software Error (process supervision restart),"P-CSCF restarted, active dialogs and registrations lost",2026-07-06T22:15:00,CLEAR
+685725ce6bb3,SCSCF_OVERLOAD,scscf,MAJOR,Congestion (SIP transaction load),"S-CSCF replying 503 Service Unavailable, tm table full",2026-07-06T22:30:00,RAISE
+685725ce6bb3,SCSCF_OVERLOAD,scscf,CLEARED,Congestion (SIP transaction load),"S-CSCF replying 503 Service Unavailable, tm table full",2026-07-06T23:45:00,CLEAR
+eb3629b417dd,PYHSS_DOWN,pyhss,CRITICAL,Communications Subsystem Failure (Diameter Cx),"HSS not answering MAR/SAR, registrations failing",2026-07-07T10:15:00,RAISE
+eb3629b417dd,PYHSS_DOWN,pyhss,CLEARED,Communications Subsystem Failure (Diameter Cx),"HSS not answering MAR/SAR, registrations failing",2026-07-07T10:30:00,CLEAR
+2ab080406d59,MEDIA_QOS_DEGRADED,rtpengine,MAJOR,Quality of Service Degraded (RTP packet loss),High RTP packet loss / jitter on media path,2026-07-07T12:15:00,RAISE
+2ab080406d59,MEDIA_QOS_DEGRADED,rtpengine,CLEARED,Quality of Service Degraded (RTP packet loss),High RTP packet loss / jitter on media path,2026-07-07T16:15:00,CLEAR
+f11741cf1618,PYHSS_DOWN,pyhss,CRITICAL,Communications Subsystem Failure (Diameter Cx),"HSS not answering MAR/SAR, registrations failing",2026-07-08T01:45:00,RAISE
+f11741cf1618,PYHSS_DOWN,pyhss,CLEARED,Communications Subsystem Failure (Diameter Cx),"HSS not answering MAR/SAR, registrations failing",2026-07-08T02:00:00,CLEAR

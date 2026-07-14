@@ -1,0 +1,42 @@
+Here's the complete failure catalog across all three generators:
+
+**RAN — gnb_synth.py (11 fault types)**
+
+1. **SYNC_LOSS** (MAJOR) — GNSS holdover, TDD timing drift → HO failures ×8, drops ×5
+2. **CONGESTION** (MINOR) — high PRB utilisation → RRC failures ×4, throughput to 45%, traffic ×1.35
+3. **CELL_DOWN** (CRITICAL) — baseband failure → full outage
+4. **RF_VSWR** (MAJOR) — antenna/feeder mismatch → drops ×3, HO failures ×3, throughput to 70%
+5. **HIGH_TEMP** (WARNING) — radio unit temperature → alarm only, no KPI impact
+6. **UL_INTERFERENCE** (MAJOR) — external interference/PIM → RRC failures ×3.5, UL throughput to 35%
+7. **TRANSPORT_DEGRADED** (MAJOR) — NG-U backhaul loss → drops ×4, PDU failures ×3
+8. **AMF_UNREACHABLE** (CRITICAL) — NG-C/SCTP down → PDU failures ×60 → *mirrored in core amf.log*
+9. **SW_PROCESS_RESTART** (MINOR) — DU restart → 1-ROP outage
+10. **NEIGHBOR_MISSING** (MINOR) — ANR misconfig → HO failures ×6, long-lived
+11. **SLEEPING_CELL** (MAJOR) — silent, **no alarm** → traffic to 3%, KPI-only detection
+
+**Core — core_synth.py (8 fault types)**
+
+1. **UPF_PFCP_DOWN** (CRITICAL) — N4 heartbeat lost → PDU failures ×80 → *cascades to IMS media*
+2. **MONGODB_DOWN** (CRITICAL) — UDR loses DB → auth failures ×40, registration failures ×10
+3. **NRF_UNREACHABLE** (MAJOR) — SBI discovery failing → PDU failures ×12
+4. **AMF_OVERLOAD** (MAJOR) — overload control → registration rejects ×8
+5. **SMF_RESTART** (MINOR) — wipes all active PFCP sessions, PDU failures ×6
+6. **PCF_POLICY_FAILURE** (MINOR) — SM policy fails for DNN → PDU failures ×3
+7. **SLICE_MISCONFIG** (MINOR) — S-NSSAI fallback → registration failures ×1.6, very long-lived
+8. **N2_SCTP_FLAP** (MAJOR) — NG flapping → traffic to 35% → *cascades to IMS traffic dip*
+
+**IMS — ims_synth.py (7 fault types)**
+
+1. **PYHSS_DOWN** (CRITICAL) — Cx MAR/UAR timeouts → SIP registration failures ×60
+2. **RTPENGINE_DOWN** (CRITICAL) — ng socket unresponsive → call setup failures ×45 (500 on offer)
+3. **DNS_FAILURE** (MAJOR) — named SERVFAIL → registration failures ×6, call failures ×8
+4. **SCSCF_OVERLOAD** (MAJOR) — tm table full, 503 Retry-After → registration failures ×7, call failures ×5
+5. **KAMAILIO_RESTART** (MINOR) — P-CSCF restart → active dialogs and ~70% of registrations wiped, drops ×10
+6. **MEDIA_QOS_DEGRADED** (MAJOR) — RTP packet loss/jitter → drops ×4, MOS penalty −1.4
+7. **REGISTRATION_STORM** (MINOR) — re-REGISTER burst ×3.5 with pike rate-limiting logs
+
+**Baseline per-procedure failure branches** (always present at low rates, amplified by faults): RAN — RRC setup failure, HO failure, abnormal release; Core — auth MAC failure ("Illegal UE" reject), missing SDM subscription data, PFCP establishment timeout; IMS — 403 Forbidden on auth, 503/timeout on INVITE, 486 Busy/480 No Answer (user behaviour, not counted as network failure), mid-call media timeout drops.
+
+**Cross-layer cascades:** RAN AMF_UNREACHABLE/CELL_DOWN → core N2 SCTP logs + traffic dip; core UPF_PFCP_DOWN → IMS 500 media failures, RTPEngine timeouts, MOS dip; core N2_SCTP_FLAP → IMS traffic dip.
+
+That's 26 injected fault types total, plus the baseline branches — and the dataset deliberately includes the two tricky diagnostic cases: KPI anomaly with no alarm (SLEEPING_CELL) and alarm with no KPI impact (HIGH_TEMP).

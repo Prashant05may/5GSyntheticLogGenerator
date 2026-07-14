@@ -1,0 +1,19 @@
+alarm_id,fault_type,nf,severity,probable_cause,specific_problem,event_time,action
+43489a6588e0,AMF_OVERLOAD,amf,MAJOR,Congestion (SBI/NGAP overload),"AMF overload control active, registrations rejected",2026-07-06T00:30:00,RAISE
+43489a6588e0,AMF_OVERLOAD,amf,CLEARED,Congestion (SBI/NGAP overload),"AMF overload control active, registrations rejected",2026-07-06T01:00:00,CLEAR
+6512513324dd,SLICE_MISCONFIG,nssf,MINOR,Configuration or Customisation Error (S-NSSAI),"Requested S-NSSAI not served, slice selection fallback",2026-07-06T08:15:00,RAISE
+36a79f5a4b73,N2_SCTP_FLAP,amf,MAJOR,Communications Protocol Error (N2 / SCTP),"NG interface to gNB flapping, RAN signalling lost",2026-07-06T09:15:00,RAISE
+36a79f5a4b73,N2_SCTP_FLAP,amf,CLEARED,Communications Protocol Error (N2 / SCTP),"NG interface to gNB flapping, RAN signalling lost",2026-07-06T10:00:00,CLEAR
+b6ed748aae57,PCF_POLICY_FAILURE,pcf,MINOR,Configuration or Customisation Error (policy),SM policy association failures for DNN,2026-07-06T10:15:00,RAISE
+b6ed748aae57,PCF_POLICY_FAILURE,pcf,CLEARED,Configuration or Customisation Error (policy),SM policy association failures for DNN,2026-07-06T13:30:00,CLEAR
+e0f408bcc786,UPF_PFCP_DOWN,upf,CRITICAL,Communications Subsystem Failure (PFCP),"UPF not responding to PFCP heartbeat, N4 down",2026-07-06T13:30:00,RAISE
+e0f408bcc786,UPF_PFCP_DOWN,upf,CLEARED,Communications Subsystem Failure (PFCP),"UPF not responding to PFCP heartbeat, N4 down",2026-07-06T14:00:00,CLEAR
+6512513324dd,SLICE_MISCONFIG,nssf,CLEARED,Configuration or Customisation Error (S-NSSAI),"Requested S-NSSAI not served, slice selection fallback",2026-07-06T16:00:00,CLEAR
+b7eed0fef118,N2_SCTP_FLAP,amf,MAJOR,Communications Protocol Error (N2 / SCTP),"NG interface to gNB flapping, RAN signalling lost",2026-07-07T06:15:00,RAISE
+b7eed0fef118,N2_SCTP_FLAP,amf,CLEARED,Communications Protocol Error (N2 / SCTP),"NG interface to gNB flapping, RAN signalling lost",2026-07-07T06:30:00,CLEAR
+2c8c45aa823f,NRF_UNREACHABLE,nrf,MAJOR,Communications Subsystem Failure (SBI),"NF discovery failing, NRF not responding on SBI",2026-07-07T13:00:00,RAISE
+2c8c45aa823f,NRF_UNREACHABLE,nrf,CLEARED,Communications Subsystem Failure (SBI),"NF discovery failing, NRF not responding on SBI",2026-07-07T13:30:00,CLEAR
+c7fed21559df,PCF_POLICY_FAILURE,pcf,MINOR,Configuration or Customisation Error (policy),SM policy association failures for DNN,2026-07-07T16:15:00,RAISE
+c7fed21559df,PCF_POLICY_FAILURE,pcf,CLEARED,Configuration or Customisation Error (policy),SM policy association failures for DNN,2026-07-07T20:15:00,CLEAR
+80989977c94d,AMF_OVERLOAD,amf,MAJOR,Congestion (SBI/NGAP overload),"AMF overload control active, registrations rejected",2026-07-08T21:15:00,RAISE
+80989977c94d,AMF_OVERLOAD,amf,CLEARED,Congestion (SBI/NGAP overload),"AMF overload control active, registrations rejected",2026-07-08T22:30:00,CLEAR
